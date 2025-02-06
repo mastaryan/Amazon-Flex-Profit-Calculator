@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Cost Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            flex-direction: column;
+        }
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            width: 100%;
+            height: 40px;
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Fuel Cost Calculator</h2>
+        <label>Vehicle MPG:</label>
+        <input type="number" id="mpg" placeholder="Enter MPG">
+        <label>Cost per Gallon ($):</label>
+        <input type="number" id="costPerGallon" placeholder="Enter Cost per Gallon">
+        <label>Miles Driven:</label>
+        <input type="number" id="milesDriven" placeholder="Enter Miles Driven">
+        <label>Accepted Block Amount ($):</label>
+        <input type="number" id="blockAmount" placeholder="Enter Block Amount">
+        <button onclick="calculateNetIncome()">Calculate Net Income</button>
+        <h3 id="result"></h3>
+    </div>
+    <script>
+        function calculateNetIncome() {
+            let mpg = parseFloat(document.getElementById('mpg').value);
+            let costPerGallon = parseFloat(document.getElementById('costPerGallon').value);
+            let milesDriven = parseFloat(document.getElementById('milesDriven').value);
+            let blockAmount = parseFloat(document.getElementById('blockAmount').value);
+            
+            if (isNaN(mpg) || isNaN(costPerGallon) || isNaN(milesDriven) || isNaN(blockAmount)) {
+                alert('Please enter valid numbers in all fields');
+                return;
+            }
+            
+            let fuelCost = (milesDriven / mpg) * costPerGallon;
+            let mileageDeduction = milesDriven * 0.67;
+            let netIncome = blockAmount - (fuelCost - mileageDeduction);
+            
+            document.getElementById('result').innerText = `Net Income: $${netIncome.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
