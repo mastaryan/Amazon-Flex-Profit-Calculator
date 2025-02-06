@@ -39,6 +39,21 @@
             padding: 15px;
             cursor: pointer;
         }
+        .breakdown {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin-top: 20px;
+        }
+        .breakdown h4 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .breakdown p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +69,12 @@
         <input type="number" id="blockAmount" placeholder="Enter Block Amount">
         <button onclick="calculateNetIncome()">Calculate Net Income</button>
         <h3 id="result"></h3>
+    </div>
+    <div class="breakdown" id="breakdown" style="display: none;">
+        <h4>Calculation Breakdown:</h4>
+        <p id="fuelCostBreakdown"></p>
+        <p id="mileageDeductionBreakdown"></p>
+        <p id="netIncomeBreakdown"></p>
     </div>
     <script>
         function calculateNetIncome() {
@@ -78,6 +99,13 @@
             
             // Display the result
             document.getElementById('result').innerText = `Net Income: $${netIncome.toFixed(2)}`;
+            
+            // Display breakdown
+            document.getElementById('fuelCostBreakdown').innerText = `Fuel Cost: $${fuelCost.toFixed(2)} (Miles Driven: ${milesDriven} / MPG: ${mpg} x Cost per Gallon: $${costPerGallon})`;
+            document.getElementById('mileageDeductionBreakdown').innerText = `Mileage Deduction: $${mileageDeduction.toFixed(2)} (Miles Driven: ${milesDriven} x $0.50)`;
+            document.getElementById('netIncomeBreakdown').innerText = `Net Income: $${netIncome.toFixed(2)} (Block Amount: $${blockAmount} - Fuel Cost: $${fuelCost.toFixed(2)} - Mileage Deduction: $${mileageDeduction.toFixed(2)})`;
+            
+            document.getElementById('breakdown').style.display = 'block';
         }
     </script>
 </body>
