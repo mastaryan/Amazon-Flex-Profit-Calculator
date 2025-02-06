@@ -29,11 +29,6 @@
             font-size: 1.2em;
             margin-bottom: 10px;
         }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
         button {
             font-size: 1.2em;
             padding: 15px;
@@ -67,9 +62,12 @@
                 return;
             }
             
+            // Calculate fuel cost and mileage deduction
             let fuelCost = (milesDriven / mpg) * costPerGallon;
             let mileageDeduction = milesDriven * 0.67;
-            let netIncome = blockAmount - (fuelCost - mileageDeduction);
+
+            // Calculate net income
+            let netIncome = blockAmount - fuelCost - mileageDeduction;
             
             document.getElementById('result').innerText = `Net Income: $${netIncome.toFixed(2)}`;
         }
