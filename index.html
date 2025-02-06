@@ -29,19 +29,15 @@
             font-size: 1.2em;
             margin-bottom: 10px;
         }
-        input[type="number"]::-webkit-inner-spin-button, 
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
         }
         button {
             font-size: 1.2em;
             padding: 15px;
             cursor: pointer;
-        }
-        h3 {
-            margin-top: 20px;
-            font-size: 1.5em;
         }
     </style>
 </head>
@@ -55,7 +51,7 @@
         <label>Miles Driven:</label>
         <input type="number" id="milesDriven" placeholder="Enter Miles Driven">
         <label>Accepted Block Amount ($):</label>
-        <input type="number" id="blockAmount" step="0.01" placeholder="Enter Block Amount">
+        <input type="number" id="blockAmount" placeholder="Enter Block Amount">
         <button onclick="calculateNetIncome()">Calculate Net Income</button>
         <h3 id="result"></h3>
     </div>
@@ -71,13 +67,16 @@
                 return;
             }
             
-            // Calculate fuel cost and mileage deduction
+            // Calculate fuel cost
             let fuelCost = (milesDriven / mpg) * costPerGallon;
+            
+            // Calculate mileage deduction
             let mileageDeduction = milesDriven * 0.67;
-
-            // Calculate net income
+            
+            // Calculate net income (subtracting fuel cost and mileage deduction separately)
             let netIncome = blockAmount - fuelCost - mileageDeduction;
             
+            // Display the result
             document.getElementById('result').innerText = `Net Income: $${netIncome.toFixed(2)}`;
         }
     </script>
