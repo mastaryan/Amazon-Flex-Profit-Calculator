@@ -119,7 +119,7 @@
             }
             
             let fuelCost = (milesDriven / mpg) * costPerGallon;
-            let mileageDeduction = milesDriven * 0.50;
+            let mileageDeduction = milesDriven * 0.30;
             let netIncome = blockAmount - fuelCost - mileageDeduction;
             
             document.getElementById('result').innerText = `Net Income: $${netIncome.toFixed(2)}`;
